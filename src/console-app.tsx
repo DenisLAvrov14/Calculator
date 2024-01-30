@@ -9,43 +9,39 @@ export const ConsoleApp: FC = () => {
   const [b, setB] = useState<number>(0);
   const [result, setResult] = useState<number>();
 
-  const eventSetA = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSetA = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setA(parseFloat(event.target.value))
   }, [setA])
 
-  const eventSetB = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSetB = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setB(parseFloat(event.target.value))
   }, [setB])
 
-  const calculateAdd = () => {
-    const resultAdd = a + b;
-    return setResult(resultAdd)
-  };
+  const handleAdd = useCallback(() => {
+    setResult(a + b);
+  }, [a, b]);
 
-  const calculateSub = () => {
-    const resultSub = a - b;
-    return setResult(resultSub)
-  };
+  const handleSub = useCallback(() => {
+    setResult(a - b)
+  }, [a, b])
 
-  const calculateMult = () => {
-    const resultMult = a * b;
-    return setResult(resultMult)
-  };
+  const handleMult = useCallback(() => {
+    setResult(a * b)
+  }, [a, b])
 
-  const calculateDiv = () => {
-    const resultDiv = a / b;
-    return setResult(resultDiv)
-  };
+  const handleDev = useCallback(() => {
+    setResult(a / b)
+  }, [a, b])
 
   return (
     <div>
-      <input onChange={eventSetA} placeholder="Give me A"></input>
-      <input onChange={eventSetB} placeholder="Give me B"></input>
+      <input onChange={handleSetA} placeholder="Give me A"></input>
+      <input onChange={handleSetB} placeholder="Give me B"></input>
       <div className="Buttons">
-        <button onClick={calculateAdd}>Addition</button>
-        <button onClick={calculateSub}>Subtraction</button>
-        <button onClick={calculateMult}>Multiplication</button>
-        <button onClick={calculateDiv}>Division</button>
+        <button onClick={handleAdd}>Addition</button>
+        <button onClick={handleSub}>Subtraction</button>
+        <button onClick={handleMult}>Multiplication</button>
+        <button onClick={handleDev}>Division</button>
       </div>
       <div>result: {result}</div>
       {/* <button>calculate</button> */}
